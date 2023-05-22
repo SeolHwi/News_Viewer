@@ -37,9 +37,9 @@ const NewsItem = ({ article }) => {
             {(
                 <div className="thumbnail">
                     <a href={url} target="_blank" rel="noopener noreferrer" >
-                        {/* 한국 뉴스 데이터 사용시
-                        <img src={"https://picsum.photos/200"} alt="thumbnail"/> */}
-                        <img src={urlToImage} alt="thumbnail"/>
+                        {/* 미국 뉴스 데이터 사용시
+                        <img src={urlToImage} alt="thumbnail"/> */}
+                        <img src={"https://picsum.photos/200"} alt="thumbnail"/>
                     </a>
                 </div>
             )}
