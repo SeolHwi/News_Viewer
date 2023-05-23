@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const NewsItemBlock = styled.div `
@@ -31,7 +31,9 @@ const NewsItemBlock = styled.div `
 `;
 
 const NewsItem = ({ article }) => {
-    const { title, description, url, urlToImage } = article
+    const { title, description, url, urlToImage } = article;
+    const [ randomImage, setRandomImage ] = useState('https://picsum.photos/200');
+
     return (
         <NewsItemBlock>
             {(
@@ -39,7 +41,7 @@ const NewsItem = ({ article }) => {
                     <a href={url} target="_blank" rel="noopener noreferrer" >
                         {/* 미국 뉴스 데이터 사용시
                         <img src={urlToImage} alt="thumbnail"/> */}
-                        <img src={"https://picsum.photos/200"} alt="thumbnail"/>
+                        <img src={`${randomImage}`} alt="thumbnail"/>
                     </a>
                 </div>
             )}

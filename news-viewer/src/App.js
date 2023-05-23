@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
+import Categories from './components/Categories';
 import NewsList from './components/NewsList';
 
 // 1) API를 사용해 가져올 데이터 확인
 // const App = () => {
+//     const [ apiKey, setApiKey ] = useState('4ffd8bf1e15d46039d25054a026c09bc');
 //     // API를 넘겨받은 state 선언
 //     const [data, setData] = useState(null);
 
@@ -12,7 +14,7 @@ import NewsList from './components/NewsList';
 //         try {
 //             const response = await axios.get(
 //                  // 뉴스 데이터를 가져올 apiKey: https://newsapi.org/register
-//                 'https://newsapi.org/v2/top-headlines?country=kr&apiKey=4ffd8bf1e15d46039d25054a026c09bc',
+//                 `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${apiKey}`,
 //             );
 //             // 응답 data state 저장
 //             setData(response.data);
@@ -34,7 +36,18 @@ import NewsList from './components/NewsList';
 
 // 2)
 const App = () => {
-  return <NewsList />;
+  // 기본 카테고리 state 선언
+  const [category, setCategory] = useState('');
+  // 콜백으로 사용 할 카테고리 함수
+  const onSelect = useCallback(Category => setCategory(Category), []);
+
+  return (
+    <>
+      {/* props로 카테고리 state와 함수를 넘겨줌 */}
+      <Categories category={category} onSelect={onSelect} />
+      <NewsList category={category} />
+    </>
+  );
 }
 
 export default App;

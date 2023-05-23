@@ -10,13 +10,14 @@ const NewsItemBlock = styled.div `
     margin: 0 auto;
     margin-top: 2rem;
     @media screen and (max-width: 768px) {
-        wdith: 100%;
+        width: 100%;
         padding-left: 1rem;
         padding-right: 1rem;
     }
 `;
 
-const NewsList = () => {
+const NewsList = ({category}) => {
+    const [ apiKey, setApiKey ] = useState('4ffd8bf1e15d46039d25054a026c09bc');
     const [ articles, setArticles ] = useState(null);
     const [ loading , setLoading ] = useState(null);
 
@@ -27,10 +28,11 @@ const NewsList = () => {
             setLoading(true)
             // try catch문 에러 처리
             try {
+                const query = category === 'all' ? '' : `&category=${category}`;
                 const response = await axios.get(
                     // 미국 뉴스 데이터 사용
                     // country=kr -> country=us
-                    'https://newsapi.org/v2/top-headlines?country=kr&apiKey=4ffd8bf1e15d46039d25054a026c09bc',
+                    `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=${apiKey}`,
                 );
                 // API 데이터 state 저장
                 setArticles(response.data.articles)
@@ -40,13 +42,13 @@ const NewsList = () => {
             setLoading(false)
         };
         fetchData();
-    }, []);
+    }, [category]);
 
     // 대기 중
     if (loading) {
         return <NewsItemBlock>대기 중입니다...</NewsItemBlock>
     }
-    // articles 값이 설정 안될경우
+    // articles 값이 설정 안될경우 (NULL 오류 방지)
     if (!articles) {
         return null;
     }
