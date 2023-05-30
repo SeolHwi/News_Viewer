@@ -27,7 +27,7 @@ https://sycdev.tistory.com/m/entry/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%95%A4%EB%93%9C
 - 한국 뉴스 데이터를 받아올 시
 아래 사진과 같이 사진과 같이 뉴스 사진과 요약 내용이 출력되지 않고 제목만 출력
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6a23b36c-5e86-4cc8-a822-0607e8a81558/Untitled.png)
+    ![05 에러 00](Error_img/05_Error_00.png)
     
 - 미국 뉴스 데이터를 받아올 시
 img 태그의 src 부분에 urlToImage와 "[https://picsum.photos/200](https://picsum.photos/200)" 모두 각각 정상 작동
