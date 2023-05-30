@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import axios from 'axios';
 import Categories from './components/Categories';
 import NewsList from './components/NewsList';
+import { Route } from 'react-router-dom';
+import NewsPage from './pages/NewsPage';
 
 // 1) API를 사용해 가져올 데이터 확인
 // const App = () => {
@@ -35,19 +36,24 @@ import NewsList from './components/NewsList';
 // };
 
 // 2)
-const App = () => {
-  // 기본 카테고리 state 선언
-  const [category, setCategory] = useState('');
-  // 콜백으로 사용 할 카테고리 함수
-  const onSelect = useCallback(Category => setCategory(Category), []);
+// const App = () => {
+//   // 기본 카테고리 state 선언
+//   const [category, setCategory] = useState('');
+//   // 콜백으로 사용 할 카테고리 함수
+//   const onSelect = useCallback(Category => setCategory(Category), []);
 
-  return (
-    <>
-      {/* props로 카테고리 state와 함수를 넘겨줌 */}
-      <Categories category={category} onSelect={onSelect} />
-      <NewsList category={category} />
-    </>
-  );
+//   return (
+//     <>
+//       {/* props로 카테고리 state와 함수를 넘겨줌 */}
+//       <Categories category={category} onSelect={onSelect} />
+//       <NewsList category={category} />
+//     </>
+//   );
+// }
+
+// 3)
+const App = () => {
+  return <Route path="/:category?" component={NewsPage} />;
 }
 
 export default App;

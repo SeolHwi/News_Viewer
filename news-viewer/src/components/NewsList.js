@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import NewsItem from "./NewsItem"
 import axios from "axios";
+import usePromise from "../lib/usePromise";
 
-const NewsItemBlock = styled.div `
+const NewsItemBlock = styled.div`
     box-sizing: border-box;
     padding-bottom: 3rem;
-    width: 768px:
+    width: 768px;
     margin: 0 auto;
     margin-top: 2rem;
     @media screen and (max-width: 768px) {
@@ -18,42 +19,31 @@ const NewsItemBlock = styled.div `
 
 const NewsList = ({category}) => {
     const [ apiKey, setApiKey ] = useState('4ffd8bf1e15d46039d25054a026c09bc');
-    const [ articles, setArticles ] = useState(null);
-    const [ loading , setLoading ] = useState(null);
-
-    useEffect(() => {
-        // async 비동기 함수호출
-        const fetchData = async () => {
-            // APi 호출 시간동안 보여줄 로딩바
-            setLoading(true)
-            // try catch문 에러 처리
-            try {
-                const query = category === 'all' ? '' : `&category=${category}`;
-                const response = await axios.get(
-                    // 미국 뉴스 데이터 사용
-                    // country=kr -> country=us
-                    `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=${apiKey}`,
-                );
-                // API 데이터 state 저장
-                setArticles(response.data.articles)
-            } catch (e) {
-                console.log(e)
-            }
-            setLoading(false)
-        };
-        fetchData();
-    }, [category]);
+    // const [ articles, setArticles ] = useState(null);
+    // const [ loading , setLoading ] = useState(null);
+    const [loading, response, error] = usePromise(() => {
+        // props로 넘어온 state로
+        const query = category === 'all' ? '' : `&category=${category}`;
+        return axios.get(
+            `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=${apiKey}`,
+        )
+    }, [category])
 
     // 대기 중
     if (loading) {
         return <NewsItemBlock>대기 중입니다...</NewsItemBlock>
     }
     // articles 값이 설정 안될경우 (NULL 오류 방지)
-    if (!articles) {
+    if (!response) {
         return null;
+    }
+    // 에러가 발생했을 떄
+    if (error) {
+        return <NewsItemBlock>에러 발생...</NewsItemBlock>;
     }
 
     // articles 같이 유효할 떄
+    const { articles } = response.data;
     return (
         <NewsItemBlock>
             {articles.map(v =>  (
