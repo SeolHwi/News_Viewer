@@ -78,9 +78,9 @@ const Categories = () => {
 
                 <Category 
                     key={v.name}
-                    activeClassName="active"
-                    exact={v.name === 'all'}
-                    to={v.name === 'all' ? '/' : `${v.name}`}
+                    className={({isActive}) => (isActive ? "active-style" : 'none')}
+                    end={v.name === 'all'}
+                    to={v.name === 'all' ? '/' : `/${v.name}`}
                 >
                     {v.text}
                 </Category>

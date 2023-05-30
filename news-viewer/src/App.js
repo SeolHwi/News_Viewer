@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import Categories from './components/Categories';
 import NewsList from './components/NewsList';
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import NewsPage from './pages/NewsPage';
 
 // 1) API를 사용해 가져올 데이터 확인
@@ -53,7 +53,11 @@ import NewsPage from './pages/NewsPage';
 
 // 3)
 const App = () => {
-  return <Route path="/:category?" component={NewsPage} />;
+  return (
+    <Routes>
+      <Route path="/:category?" element={<NewsPage />} />
+    </Routes>
+  );
 }
 
 export default App;
