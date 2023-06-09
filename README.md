@@ -79,7 +79,7 @@ https://sycdev.tistory.com/m/entry/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%95%A4%EB%93%9C
     - 에러 내용
         - 카테고리를 연속해서 누르게 되면 이전처럼 메인 페이지로 돌아갔다가 이동하는 것이 아닌 그대로 중첩됨.
             
-            ![08 에러 02](Error_img/08_Error_01.png)
+            ![08 에러 02](Error_img/08_Error_02.png)
             
     - 해결 방법
         - Categories.js
