@@ -68,7 +68,7 @@ https://sycdev.tistory.com/m/entry/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%95%A4%EB%93%9C
     - v6으로 변경 후 일부 코드 수정
         - App.js
             ```
-            <Route> 태그의 path 속성값을 상대경로로 변경
+            <Route> 태그의 path 속성값을 상대경로로 변경 (본 코드에서는 절대경로로 되어있으나 정상작동)
             <Route> 태그의 component 속성을 element 속성으로 변경
             <Route> 태그의 element 속성값을 {<NewsPage />}로 변경
             ```
